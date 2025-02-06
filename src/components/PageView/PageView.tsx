@@ -1,55 +1,53 @@
 /** @format */
 
-import React, { act } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import Map from "./components/Map/Map";
 import { ControlPanel } from "./components/ControlPanel";
+
 const PageView = () => {
-  const MAP_SIZE = 5;
-  const [position, setPosition] = useState([0, 0]);
-  const [direction, setDirection] = useState([
-    "NORTH",
-    "EAST",
-    "SOUTH",
-    "WEST",
-  ]);
+  type Direction = "Up" | "Down" | "Left" | "Right";
+  const map_size = [5, 5];
+  const X = 0;
+  const Y = 1;
+  const [position, setPosition] = useState([3, 3]);
+  const [direction, setDirection] = useState<Direction>("Up");
+
   const updatePosition = (x: number, y: number): void => {
-    if (x >= 0 && x < MAP_SIZE && y >= 0 && y < MAP_SIZE) {
+    if (x >= 0 && x < map_size[X] && y >= 0 && y < map_size[Y]) {
       setPosition([x, y]);
     }
   };
-  const updateDirection = (currentDirection: string, turn: string): void => {
-    setDirection((prevDirection) => {
-        
-    });
+  const updateDirection = (turn: Direction): void => {
+    setDirection(turn);
   };
   const moveRobot = (action: string): void => {
     if (action === "Move") {
-      // Move robot
+      // TODO: Move robot
     }
     if (action === "Right") {
-      // turn robot
+      // TODO: turn robot
     }
     if (action === "Left") {
-      // turn robot
+      // TODO: turn robot
     }
   };
-  const handleGetPosition = (e: Event): void => {
-    return setPosition(e.target?.value); // !Error: Object is possibly 'null'.
-  };
+  // const handleGetPosition = (): number[] => {
+  //   return position;
+  // };
   return (
     <div className="page-view">
-      <div className="map-view">
-        <Map />
-      </div>
-      <div className="control-panel">
-        <ControlPanel
-          moveRobot={moveRobot}
-          position={position}
-          getPosition={handleGetPosition}
-        />
-      </div>
+      <Map
+        direction={direction}
+        position={position}
+        map_size={map_size}
+      />
+      <ControlPanel
+        moveRobot={moveRobot}
+        position={position}
+        direction={direction}
+        // getPosition={handleGetPosition}
+      />
     </div>
   );
 };
