@@ -13,7 +13,7 @@ const Toy: React.FC<Props> = ({ direction }) => {
     "Right": "→",
   };
   return (
-    <div>
+    <div className="toy-agent">
       <span>{agentHeading[direction]}</span>
     </div>
   );
