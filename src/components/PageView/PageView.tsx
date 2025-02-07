@@ -7,6 +7,8 @@ import { ControlPanel } from "./components/ControlPanel";
 const PageView = () => {
   type Direction = "Up" | "Down" | "Left" | "Right";
   const map_size = [5, 5];
+  const ROW = 0;
+  const COLUMN = 1;
   const [position, setPosition] = useState<number[]>([3, 3]);
   const [direction, setDirection] = useState<Direction>("Up");
   const [inputCoordinator, setInputCoordinator] = useState<
@@ -46,8 +48,18 @@ const PageView = () => {
     setInputCoordinator([parseInt(x), parseInt(y), head as Direction]);
   };
   const setRobot = (): void => {
+    const headSet = new Set(["Up", "Right", "Down", "Left"]);
     const [x, y, head] = inputCoordinator;
     const temp_head = head.replace(/^./, (match) => match.toUpperCase());
+
+    if (x < 0 || x >= map_size[ROW] || y < 0 || y >= map_size[COLUMN]) {
+      setPosition([0, 0]);
+      return;
+    }
+    if (!headSet.has(temp_head)) {
+      setDirection("Up");
+      return;
+    }
     setPosition([x, y]);
     setDirection(temp_head as Direction);
   };

@@ -26,8 +26,8 @@ const ControlPanel: React.FC<Props> = ({
         <button onClick={moveRobot}>Move</button>
         <button onClick={() => turnRobot("Left")}>Left</button>
         <button onClick={() => turnRobot("Right")}>Right</button>
+        <label>Accept value: Up, Right, Down, Left</label>
         <div className="set-robot">
-          <label>Accept value: Up, Right, Down, Left</label>
           <input
             style={{ textAlign: "center" }}
             placeholder="(X, Y, F)"
