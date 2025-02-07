@@ -44,7 +44,8 @@ const PageView = () => {
     if (action != "Right" && action != "Left") {
       return;
     }
-    setDirection(action);
+  
+    setDirection(directionList[nextIndex] as Direction);
   };
   // const handleGetPosition = (): number[] => {
   //   return position;
