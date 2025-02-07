@@ -22,7 +22,7 @@ const Map: React.FC<Props> = ({ direction, position, map_size }) => {
               {Array.from({ length: map_size[COLUMN] }).map((_, j) => (
                 <td
                   key={uuid()}
-                  className="map-tail">
+                  className="map-tile">
                   {position[ROW] === j && position[COLUMN] === i ? (
                     <Tile
                       direction={direction}
