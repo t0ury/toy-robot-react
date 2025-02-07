@@ -26,9 +26,9 @@ const PageView = () => {
     const [lengthX, lengthY] = map_size;
 
     const moveStrategy = {
-      Up: [x, (y - 1) < 0 ? (lengthY - 1) : (y - 1)],
+      Up: [x, y - 1 < 0 ? lengthY - 1 : y - 1],
       Down: [x, (y + 1) % lengthY],
-      Left: [(x - 1) < 0 ? lengthX-1 : (x-1), y],
+      Left: [x - 1 < 0 ? lengthX - 1 : x - 1, y],
       Right: [(x + 1) % lengthX, y],
     };
 
