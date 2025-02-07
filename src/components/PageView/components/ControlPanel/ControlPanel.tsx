@@ -33,7 +33,7 @@ const ControlPanel: React.FC<Props> = ({
             placeholder="(X, Y, F)"
             value={`${inputCoordinator}`}
             onChange={setCoordinator}></input>
-          <button onClick={setRobot}>Set Toy</button>
+          <button onClick={setRobot}>Place Toy</button>
         </div>
       </div>
       <div className="report-position">
