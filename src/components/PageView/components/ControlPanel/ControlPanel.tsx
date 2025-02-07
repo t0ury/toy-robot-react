@@ -4,16 +4,22 @@ import React from "react";
 interface Props {
   direction: "Up" | "Down" | "Left" | "Right";
   position: number[];
-  moveRobot: (action: string) => void;
+  moveRobot: () => void;
   getPosition?: (e: Event) => void;
+  turnRobot: (action: string) => void;
 }
-const ControlPanel: React.FC<Props> = ({ position, moveRobot, direction }) => {
+const ControlPanel: React.FC<Props> = ({
+  position,
+  moveRobot,
+  direction,
+  turnRobot,
+}) => {
   return (
     <div className="control-panel">
       <div className="control-robot">
-        <button onClick={() => moveRobot("Move")}>Move</button>
-        <button onClick={() => moveRobot("Left")}>Left</button>
-        <button onClick={() => moveRobot("Right")}>Right</button>
+        <button onClick={moveRobot}>Move</button>
+        <button onClick={() => turnRobot("Left")}>Left</button>
+        <button onClick={() => turnRobot("Right")}>Right</button>
       </div>
       <div className="report-position">
         {/* <button onClick={getPosition}>Report</button> */}
