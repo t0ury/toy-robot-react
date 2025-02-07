@@ -5,14 +5,20 @@ interface Props {
   direction: "Up" | "Down" | "Left" | "Right";
   position: number[];
   moveRobot: () => void;
-  getPosition?: (e: Event) => void;
+  getPosition?: () => void;
   turnRobot: (action: string) => void;
+  setCoordinator: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  inputCoordinator: Array<number | string>;
+  setRobot: () => void;
 }
 const ControlPanel: React.FC<Props> = ({
   position,
   moveRobot,
   direction,
   turnRobot,
+  setCoordinator,
+  inputCoordinator,
+  setRobot,
 }) => {
   return (
     <div className="control-panel">
@@ -20,9 +26,17 @@ const ControlPanel: React.FC<Props> = ({
         <button onClick={moveRobot}>Move</button>
         <button onClick={() => turnRobot("Left")}>Left</button>
         <button onClick={() => turnRobot("Right")}>Right</button>
+        <label>Accept value: Up, Right, Down, Left</label>
+        <div className="set-robot">
+          <input
+            style={{ textAlign: "center" }}
+            placeholder="(X, Y, F)"
+            value={`${inputCoordinator}`}
+            onChange={setCoordinator}></input>
+          <button onClick={setRobot}>Place Toy</button>
+        </div>
       </div>
       <div className="report-position">
-        {/* <button onClick={getPosition}>Report</button> */}
         <label>Position: </label>
         <input
           style={{ textAlign: "center" }}
