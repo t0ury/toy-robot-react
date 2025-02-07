@@ -1,50 +1,85 @@
-# React + TypeScript + Vite
+<!-- @format -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Toy Robot Simulator
 
-Currently, two official plugins are available:
+- ## 项目结构
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  ├──[project]
+  │ ├──[src]
+  │ │ ├── [components]
+  │ │ │ ├── [Map]
+  │ │ │ │ ├── index.jsx
+  │ │ │ │ ├── Map.jsx
+  │ │ │ │ ├── Tile.jsx
+  │ │ │ ├── [Toy]
+  │ │ │ │ ├── index.jsx
+  │ │ │ │ ├── Toy.jsx
+  │ │ │ ├── [PageView]
+  │ │ │ │ ├── index.jsx
+  │ │ │ │ ├── PageView
+  │ │ ├── App.jsx
+  │ │ ├── main.jsx
+  │ │ ├── App.css
+  │ │ ├── index.css
 
-## Expanding the ESLint configuration
+- ## 组件之间的(包含)关系
+- #### PageView
+- _\<PageView>_ splits the toy robot to 2 block
+  - _\<Map>_ handle the map rendering
+  - _\<ControlPanel>_ handle the 3 button to control the toy robot, also display the current position to textbox
+- #### Map
+- _\<Map>_ represent the (n\*m) map, implement use HTML \<table>
+  - _\<Tile>_ represent 1 title in the map, it can be norm tile or toy robot.
+    - _\<Toy>_ represent the toy robot, the _\<Tile>_ will only return _\<Toy>_ when condition meets
+- #### ControlPanel
+  - _\<ControlPanel>_ represent the side panel that contain **3** HTML \<button> to control robot, and \<input> to display (x, y, "[head]") of current coordinate and heading of the robot.
+-
+- #### 功能实现的思路
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - ##### Robot
 
-- Configure the top-level `parserOptions` property like this:
+    - ###### Turn robot
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+      ```
+      # pseudocode
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+      turn <== ["Up", "Right", "Down", "Left"]
+      current_heading <== "Up"
+      count <== 1
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+      # counterclockwise
+      while onClick("Left") do
+      count <== count - 1
+      if count equal to 1 then
+      count <== turn.length() + 1
+      end if
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+      # clockwise
+      while onClick("Right") do
+      count <== count + 1
+
+      new_heading <== turn[turn.length() % count]
+      ```
+
+    - ###### move
+
+      ```
+      # pseudocode
+      position <== [1,1]
+      heading <== ['Left']
+
+      moveStrategy <== {
+      Up: [x, y + 1],
+      Down: [x, y - 1],
+      Left: [x - 1, y],
+      Right: [x + 1, y],
+      };
+
+      while onClick('Move') do
+        setPositon(
+          moveStrategy[heading]
+        )
+      ```
+
+  - Map render
+    - if _Tile(x,y)_ equal to _Toy_Robot(x,y)_, render the cell as \<Toy> robot.
