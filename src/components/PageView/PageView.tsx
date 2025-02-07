@@ -1,26 +1,18 @@
 /** @format */
 
 import { useState } from "react";
-import { useEffect } from "react";
 import Map from "./components/Map/Map";
 import { ControlPanel } from "./components/ControlPanel";
 
 const PageView = () => {
   type Direction = "Up" | "Down" | "Left" | "Right";
   const map_size = [5, 5];
-  const X = 0;
-  const Y = 1;
   const [position, setPosition] = useState<number[]>([3, 3]);
   const [direction, setDirection] = useState<Direction>("Up");
+  const [inputCoordinator, setInputCoordinator] = useState<
+    [number, number, Direction]
+  >([0, 0, "Up"]);
 
-  const updatePosition = (x: number, y: number): void => {
-    if (x >= 0 && x < map_size[X] && y >= 0 && y < map_size[Y]) {
-      setPosition([x, y]);
-    }
-  };
-  const updateDirection = (turn: Direction): void => {
-    setDirection(turn);
-  };
   const moveRobot = (): void => {
     const [x, y] = position;
     const [lengthX, lengthY] = map_size;
@@ -34,6 +26,7 @@ const PageView = () => {
 
     setPosition(moveStrategy[direction]);
   };
+
   const turnRobot = (action: string): void => {
     const directionList = ["Up", "Right", "Down", "Left"];
     const currentIndex = directionList.indexOf(direction);
@@ -44,12 +37,20 @@ const PageView = () => {
     if (action != "Right" && action != "Left") {
       return;
     }
-  
+
     setDirection(directionList[nextIndex] as Direction);
   };
-  // const handleGetPosition = (): number[] => {
-  //   return position;
-  // };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const [x, y, head] = e.target.value.split(",").map((item) => item.trim());
+    setInputCoordinator([parseInt(x), parseInt(y), head as Direction]);
+  };
+  const setRobot = (): void => {
+    const [x, y, head] = inputCoordinator;
+    const temp_head = head.replace(/^./, (match) => match.toUpperCase());
+    setPosition([x, y]);
+    setDirection(temp_head as Direction);
+  };
   return (
     <div className="page-view">
       <Map
@@ -62,6 +63,9 @@ const PageView = () => {
         turnRobot={turnRobot}
         position={position}
         direction={direction}
+        inputCoordinator={inputCoordinator}
+        setCoordinator={handleInputChange}
+        setRobot={setRobot}
       />
     </div>
   );
