@@ -2,6 +2,8 @@
 
 # Toy Robot Simulator
 
+Demo: https://pub-4546e1ee800a4a0d9aa0c75096c1ea25.r2.dev/index.html
+
 - ## 项目结构
 
   - [project]
