@@ -8,6 +8,9 @@
 }
 
 .page-view {
+  border-radius: 25px;
+  box-shadow: 0 0 10px 0 rgba(150, 150, 150, 0.743);
+  padding: 2rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(300px, 1fr));
 }
@@ -54,4 +57,14 @@
   max-width: auto;
   min-width: 20px;
   min-height: 20px;
+}
+.set-robot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.set-robot input {
+  height: 70%;
+  margin: 0;
 }
