@@ -104,8 +104,16 @@ Demo: https://pub-4546e1ee800a4a0d9aa0c75096c1ea25.r2.dev/index.html
     - if _Tile(x,y)_ equal to _Toy_Robot(x,y)_, render the cell as \<Toy> robot.
 
 
+- #### Usage
+  - `git clone https://github.com/t0ury/toy-robot-react`
+  - `cd toy-robot-react`
+  - `npm install`
+  - `npm run dev`
+   
 - #### Assumption
   - The robot turn clockwise while click `Right` button, or counterclockwise while click `Left` button.
 
   - The robot can move ahead, when it collide the edge/border, the robot will come out from the oppsite cell instead of staying still.
+ 
+  - The Robot by default placed to tile(3,3,Up)
     
