@@ -43,15 +43,15 @@ Demo: https://pub-4546e1ee800a4a0d9aa0c75096c1ea25.r2.dev/index.html
 - ## 组件之间的(包含)关系
   
 - #### PageView
-  - _\<PageView>_ splits the toy robot to 2 block
-    - _\<Map>_ handle the map rendering
-    - _\<ControlPanel>_ handle the 3 button to control the toy robot, also display the current position to textbox
+  - _\<PageView>_ Splits the toy robot to 2 block
+    - _\<Map>_ Handle the map rendering
+    - _\<ControlPanel>_ Handle the 3 button to control the toy robot, also display the current position to textbox
 - #### Map
-  - _\<Map>_ represent the (n\*m) map, implement use HTML \<table>
-    - _\<Tile>_ represent 1 title in the map, it can be norm tile or toy robot.
-      - _\<Toy>_ represent the toy robot, the _\<Tile>_ will only return _\<Toy>_ when condition meets
+  - _\<Map>_ Represent the (n\*m) map, implement use HTML \<table>
+    - _\<Tile>_ Each <Tile> component represent 1 tile in the map, it can be normal tile or toy robot.
+      - _\<Toy>_ Represent the toy robot, the _\<Tile>_ will only return _\<Toy>_ when condition meets
 - #### ControlPanel
-  - _\<ControlPanel>_ represent the side panel that contain **3** HTML \<button> to control robot, and \<input> to display (x, y, "[head]") of current coordinate and heading of the robot.
+  - _\<ControlPanel>_ Represent the side panel that contains **3** HTML \<button> to control robot, and \<input> to display (x, y, "[head]") of current coordinate and heading of the robot.
 
 - #### 功能实现的思路
 
