@@ -12,14 +12,6 @@ Demo: https://pub-4546e1ee800a4a0d9aa0c75096c1ea25.r2.dev/index.html
   
       - [components]
   
-          - [Map]
-  
-            - index.jsx
-  
-            - Map.jsx
-  
-            - Tile.jsx
-  
           - [Toy]
   
              - index.jsx
@@ -31,6 +23,16 @@ Demo: https://pub-4546e1ee800a4a0d9aa0c75096c1ea25.r2.dev/index.html
             - index.jsx
   
             - PageView.jsx
+           
+            - [components]
+            
+              - [Map]
+    
+                - index.jsx
+      
+                - Map.jsx
+      
+                - Tile.jsx
   
     - App.jsx
   
