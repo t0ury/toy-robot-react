@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { Button } from "../../../Button";
 interface Props {
   direction: "Up" | "Down" | "Left" | "Right";
   position: number[];
@@ -23,9 +24,9 @@ const ControlPanel: React.FC<Props> = ({
   return (
     <div className="control-panel">
       <div className="control-robot">
-        <button onClick={moveRobot}>Move</button>
-        <button onClick={() => turnRobot("Left")}>Left</button>
-        <button onClick={() => turnRobot("Right")}>Right</button>
+        <Button handleClick={moveRobot}>Move</Button>
+        <Button handleClick={() => turnRobot("Left")}>Left</Button>
+        <Button handleClick={() => turnRobot("Right")}>Right</Button>
         <label>Accept value: Up, Right, Down, Left</label>
         <div className="set-robot">
           <input
@@ -33,7 +34,7 @@ const ControlPanel: React.FC<Props> = ({
             placeholder="(X, Y, F)"
             value={`${inputCoordinator}`}
             onChange={setCoordinator}></input>
-          <button onClick={setRobot}>Place Toy</button>
+          <Button handleClick={setRobot}>Place Toy</Button>
         </div>
       </div>
       <div className="report-position">
