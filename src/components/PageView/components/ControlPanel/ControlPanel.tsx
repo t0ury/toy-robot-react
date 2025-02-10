@@ -2,15 +2,17 @@
 
 import React from "react";
 import { Button } from "../../../Button";
+import { Direction, Action } from "../../../../typeDefine";
 interface Props {
-  direction: "Up" | "Down" | "Left" | "Right";
+  direction: Direction;
   position: number[];
   moveRobot: () => void;
   getPosition?: () => void;
-  turnRobot: (action: string) => void;
+  turnRobot: (turn: Action) => void;
   setCoordinator: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputCoordinator: Array<number | string>;
   setRobot: () => void;
+  setDirection: () => void;
 }
 const ControlPanel: React.FC<Props> = ({
   position,
@@ -25,8 +27,8 @@ const ControlPanel: React.FC<Props> = ({
     <div className="control-panel">
       <div className="control-robot">
         <Button handleClick={moveRobot}>Move</Button>
-        <Button handleClick={() => turnRobot("Left")}>Left</Button>
-        <Button handleClick={() => turnRobot("Right")}>Right</Button>
+        <Button handleClick={() => turnRobot("LEFT")}>Left</Button>
+        <Button handleClick={() => turnRobot("RIGHT")}>Right</Button>
         <label>Accept value: Up, Right, Down, Left</label>
         <div className="set-robot">
           <input
