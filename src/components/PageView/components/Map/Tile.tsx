@@ -1,16 +1,14 @@
 /** @format */
 
 import React from "react";
-import { Toy } from "../../../Toy";
 
 interface Prop {
-  direction: "Up" | "Down" | "Left" | "Right";
-  type: "robot" | "blank";
+  type: "land" | "water";
 }
-const Tile: React.FC<Prop> = ({ direction, type }) => {
+
+const Tile: React.FC<Prop> = ({ type }) => {
   const tileType = {
-    robot: <Toy direction={direction}></Toy>,
-    blank: "T",
+    land: "T",
     water: "W",
   };
 
