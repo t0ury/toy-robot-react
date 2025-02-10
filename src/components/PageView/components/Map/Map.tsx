@@ -2,6 +2,7 @@
 
 import { v4 as uuid } from "uuid";
 import { Tile } from "./";
+import { Toy } from "../../../Toy";
 
 interface Props {
   direction: "Up" | "Down" | "Left" | "Right";
@@ -11,7 +12,6 @@ interface Props {
 
 const Map: React.FC<Props> = ({ direction, position, map_size }) => {
   const [ROW, COLUMN] = [0, 1];
-
   return (
     <div className="map-body">
       <table>
@@ -23,15 +23,9 @@ const Map: React.FC<Props> = ({ direction, position, map_size }) => {
                   key={uuid()}
                   className="map-tile">
                   {position[ROW] === j && position[COLUMN] === i ? (
-                    <Tile
-                      direction={direction}
-                      type={"robot"}
-                    />
+                    <Toy direction={direction} />
                   ) : (
-                    <Tile
-                      direction={direction}
-                      type={"blank"}
-                    />
+                    <Tile type={"land"} />
                   )}
                 </td>
               ))}
