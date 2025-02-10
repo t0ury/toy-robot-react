@@ -9,38 +9,50 @@ Demo: https://pub-4546e1ee800a4a0d9aa0c75096c1ea25.r2.dev/index.html
   - [project]
   
     - [src]
-  
+      - [utils]
+        - moveRobot.tsx
+          
+      - typeDefine.tsx
+        
       - [components]
   
           - [Toy]
   
-             - index.jsx
+             - index.tsx
   
-             - Toy.jsx
+             - Toy.tsx
   
           - [PageView]
   
-            - index.jsx
+            - index.tsx
   
-            - PageView.jsx
+            - PageView.tsx
            
             - [components]
+           
+              - [ControlPanel]
+           
+                - index.tsx
+               
+                - ControlPanel.tsx
             
               - [Map]
     
-                - index.jsx
+                - index.tsx
       
-                - Map.jsx
+                - Map.tsx
       
-                - Tile.jsx
+                - Tile.tsx
   
-    - App.jsx
+    - App.tsx
   
-    - main.jsx
+    - main.tsx
   
     - App.css
   
     - index.css
+   
+    - Toy.css
 
 - ## 组件之间的(包含)关系
   
@@ -50,16 +62,21 @@ Demo: https://pub-4546e1ee800a4a0d9aa0c75096c1ea25.r2.dev/index.html
     - _\<ControlPanel>_ Handle the 3 button to control the toy robot, also display the current position to textbox
 - #### Map
   - _\<Map>_ Represent the (n\*m) map, implement use HTML \<table>
-    - _\<Tile>_ Each <Tile> component represent 1 tile in the map, it can be normal tile or toy robot.
-      - _\<Toy>_ Represent the toy robot, the _\<Tile>_ will only return _\<Toy>_ when condition meets
+    - _\<Tile>_ Each <Tile> component represent 1 tile in the map, it can be normal land or water, etc..
 - #### ControlPanel
   - _\<ControlPanel>_ Represent the side panel that contains **3** HTML \<button> to control robot, and \<input> to display (x, y, "[head]") of current coordinate and heading of the robot.
+- #### Toy
+  - _\<Toy>_ Represent the toy robot
 
-- #### 功能实现的思路
+- ## 功能实现的思路
+  - #### Map & Toy behavior in high level
+    - init map as a n*n array, each element of array is a <Tile>
+    - the map 2D Array only created once? at start up
+    - Toy robot is render separately, using css absolute position, thus avoid recreate the map when robot moved
 
-  - ##### Robot
+  - #### Robot
 
-    - ###### Turn robot
+    - ##### Turn robot
 
       ```
       # pseudocode
@@ -82,7 +99,7 @@ Demo: https://pub-4546e1ee800a4a0d9aa0c75096c1ea25.r2.dev/index.html
       new_heading <== turn[turn.length() % count]
       ```
 
-    - ###### move
+    - ##### move
 
       ```
       # pseudocode
@@ -102,20 +119,19 @@ Demo: https://pub-4546e1ee800a4a0d9aa0c75096c1ea25.r2.dev/index.html
         )
       ```
 
-  - Map render
-    - if _Tile(x,y)_ equal to _Toy_Robot(x,y)_, render the cell as \<Toy> robot.
+  
 
 
-- #### Usage
+- ## Usage
   - `git clone https://github.com/t0ury/toy-robot-react`
   - `cd toy-robot-react`
   - `npm install`
   - `npm run dev`
    
-- #### Assumption
+- ## Assumption
   - The robot turn clockwise while click `Right` button, or counterclockwise while click `Left` button.
 
   - The robot can move ahead, when it collide the edge/border, the robot will come out from the oppsite cell instead of staying still.
  
-  - The Robot by default placed to tile(3,3,Up)
+  - The Robot by default placed to tile(2,3,Up)
     
