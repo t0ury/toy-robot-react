@@ -10,8 +10,7 @@ interface Props {
 }
 
 const Map: React.FC<Props> = ({ direction, position, map_size }) => {
-  const ROW = 0;
-  const COLUMN = 1;
+  const [ROW, COLUMN] = [0, 1];
 
   return (
     <div className="map-body">
