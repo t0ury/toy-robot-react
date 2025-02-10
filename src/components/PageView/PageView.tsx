@@ -4,11 +4,12 @@ import { useState } from "react";
 import Map from "./components/Map/Map";
 import { ControlPanel } from "./components/ControlPanel";
 
-const PageView = () => {
+interface pageViewProps {
+  map_size: number[]
+}
+const PageView: React.FC<pageViewProps> = ({ map_size }) => {
   type Direction = "Up" | "Down" | "Left" | "Right";
-  const map_size = [5, 5];
-  const ROW = 0;
-  const COLUMN = 1;
+  const [ROW, COLUMN] = [0, 1];
   const [position, setPosition] = useState<number[]>([3, 3]);
   const [direction, setDirection] = useState<Direction>("Up");
   const [inputCoordinator, setInputCoordinator] = useState<

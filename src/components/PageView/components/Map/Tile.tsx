@@ -11,6 +11,7 @@ const Tile: React.FC<Prop> = ({ direction, type }) => {
   const tileType = {
     robot: <Toy direction={direction}></Toy>,
     blank: "T",
+    water: "W",
   };
 
   return <>{tileType[type]}</>;
