@@ -5,18 +5,15 @@ import { Toy } from "../../../Toy";
 
 interface Prop {
   direction: "Up" | "Down" | "Left" | "Right";
-  isRobot: boolean;
+  type: "robot" | "blank";
 }
-const Tile: React.FC<Prop> = ({ direction, isRobot }) => {
-  if (isRobot) {
-    return (
-      <div>
-        <Toy direction={direction}></Toy>
-      </div>
-    );
-  }
+const Tile: React.FC<Prop> = ({ direction, type }) => {
+  const tileType = {
+    robot: <Toy direction={direction}></Toy>,
+    blank: "T",
+  };
 
-  return <div>T</div>;
+  return <>{tileType[type]}</>;
 };
 
 export default Tile;

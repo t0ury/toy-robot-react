@@ -26,12 +26,12 @@ const Map: React.FC<Props> = ({ direction, position, map_size }) => {
                   {position[ROW] === j && position[COLUMN] === i ? (
                     <Tile
                       direction={direction}
-                      isRobot={true}
+                      type={"robot"}
                     />
                   ) : (
                     <Tile
                       direction={direction}
-                      isRobot={false}
+                      type={"blank"}
                     />
                   )}
                 </td>
