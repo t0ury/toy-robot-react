@@ -1,6 +1,7 @@
 /** @format */
 
 import "./App.css";
+import "./Toy.css";
 import { PageView } from "./components/PageView";
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
 
   return (
     <>
-      <PageView map_size={[WIDTH, HEIGHT]} />
+      <PageView mapSize={[WIDTH, HEIGHT]} />
     </>
   );
 }
