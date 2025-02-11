@@ -12,7 +12,7 @@ const Map: React.FC<Props> = ({ children, map_size }) => {
   const [ROW, COLUMN] = [0, 1];
 
   return (
-    <div className="map-body">
+    <section className="map-body">
       <table>
         <tbody>  
           {children} 
@@ -30,7 +30,7 @@ const Map: React.FC<Props> = ({ children, map_size }) => {
           ))}
         </tbody>
       </table>
-    </div>
+    </section>
   );
 };
 

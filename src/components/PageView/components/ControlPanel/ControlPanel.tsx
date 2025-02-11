@@ -24,12 +24,14 @@ const ControlPanel: React.FC<Props> = ({
   setRobot,
 }) => {
   return (
-    <div className="control-panel">
+    <section className="control-panel">
       <div className="control-robot">
         <Button handleClick={moveRobot}>Move</Button>
         <Button handleClick={() => turnRobot("LEFT")}>Left</Button>
         <Button handleClick={() => turnRobot("RIGHT")}>Right</Button>
-        <label>Accept value: Up, Right, Down, Left</label>
+        <mark>
+          Accept value: Up, Right, Down, Left
+        </mark>
         <div className="set-robot">
           <input
             style={{ textAlign: "center" }}
@@ -47,7 +49,7 @@ const ControlPanel: React.FC<Props> = ({
           value={`${position},${direction}`}
           readOnly={true}></input>
       </div>
-    </div>
+    </section>
   );
 };
 

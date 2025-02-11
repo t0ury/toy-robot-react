@@ -6,7 +6,7 @@ import { PageView } from "./components/PageView";
 
 function App() {
   const [WIDTH, HEIGHT] = [5, 5];
-
+  
   return (
     <>
       <PageView mapSize={[WIDTH, HEIGHT]} />
