@@ -68,7 +68,7 @@ const PageView: React.FC<pageViewProps> = ({ mapSize }) => {
     setDirection(tempHeading as Direction);
   };
   return (
-    <div className="page-view">
+    <main className="page-view">
       <Map map_size={mapSize}>
         <Toy
           direction={direction}
@@ -85,7 +85,7 @@ const PageView: React.FC<pageViewProps> = ({ mapSize }) => {
         setRobot={setRobot}
         setDirection={() => setDirection}
       />
-    </div>
+    </main>
   );
 };
 
