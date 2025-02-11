@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import { Tile } from "./";
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
   map_size: number[];
 }
 
@@ -14,13 +14,15 @@ const Map: React.FC<Props> = ({ children, map_size }) => {
   return (
     <section className="map-body">
       <table>
-        <tbody>  
-          {children} 
+        <tbody>
+          <tr>
+            <td>{children}</td>
+          </tr>
           {Array.from({ length: map_size[ROW] }).map((_, i) => (
             <tr key={uuid()}>
               {Array.from({ length: map_size[COLUMN] }).map((_, j) => (
                 <td
-                  key={uuid()} 
+                  key={uuid()}
                   id={`r${i}c${j}`}
                   className="map-tile">
                   <Tile type={"land"} />
