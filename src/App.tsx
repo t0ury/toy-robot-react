@@ -2,14 +2,14 @@
 
 import "./App.css";
 import "./Toy.css";
-import { PageView } from "./components/PageView";
+import { Game } from "./components/Game";
 
 function App() {
   const [WIDTH, HEIGHT] = [5, 5];
   
   return (
     <>
-      <PageView mapSize={[WIDTH, HEIGHT]} />
+      <Game mapSize={[WIDTH, HEIGHT]} />
     </>
   );
 }
