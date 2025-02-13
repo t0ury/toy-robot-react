@@ -15,9 +15,7 @@ interface Props {
   setDirection: () => void;
 }
 const ControlPanel: React.FC<Props> = ({
-  position,
   moveRobot,
-  direction,
   turnRobot,
   setCoordinator,
   inputCoordinator,
@@ -29,9 +27,7 @@ const ControlPanel: React.FC<Props> = ({
         <Button handleClick={moveRobot}>Move</Button>
         <Button handleClick={() => turnRobot("LEFT")}>Left</Button>
         <Button handleClick={() => turnRobot("RIGHT")}>Right</Button>
-        <mark>
-          Accept value: Up, Right, Down, Left
-        </mark>
+        <mark>Accept value: Up, Right, Down, Left</mark>
         <div className="set-robot">
           <input
             style={{ textAlign: "center" }}
@@ -40,14 +36,6 @@ const ControlPanel: React.FC<Props> = ({
             onChange={setCoordinator}></input>
           <Button handleClick={setRobot}>Place Toy</Button>
         </div>
-      </div>
-      <div className="report-position">
-        <label>Position: </label>
-        <input
-          style={{ textAlign: "center" }}
-          placeholder="(X, Y, F)"
-          value={`${position},${direction}`}
-          readOnly={true}></input>
       </div>
     </section>
   );

@@ -1,14 +1,12 @@
 /** @format */
 import React from "react";
-import { Properties } from "csstype";
-import { Direction } from "../../typeDefine";
+import { Direction } from "../../../../typeDefine";
 
 interface Props {
   direction: Direction;
-  styleString: Properties<string | number, string>;
 }
 
-const Toy: React.FC<Props> = ({ direction, styleString }) => {
+const Toy: React.FC<Props> = ({ direction }) => {
   const agentHeading = {
     UP: "↑",
     DOWN: "↓",
@@ -16,9 +14,7 @@ const Toy: React.FC<Props> = ({ direction, styleString }) => {
     RIGHT: "→",
   };
   return (
-    <div
-      className="toy-agent"
-      style={styleString}>
+    <div className="toy-agent">
       <span>{agentHeading[direction]}</span>
     </div>
   );
