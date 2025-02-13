@@ -4,7 +4,6 @@ import { useState } from "react";
 import Map from "./components/Map/Map";
 import { Toy } from "./components/Toy";
 import { ControlPanel } from "./components/ControlPanel";
-import { generatePositionStyle } from "../../utils/moveRobot";
 import { Direction, Action } from "../../typeDefine";
 import { Placement } from "./components/Placement";
 import { Status } from "./components/Status";
@@ -14,7 +13,7 @@ interface pageViewProps {
 }
 const PageView: React.FC<pageViewProps> = ({ mapSize }) => {
   const [ROW, COLUMN] = [0, 1];
-  const [position, setPosition] = useState<number[]>([2, 3]);
+  const [position, setPosition] = useState<number[]>([1, 1]);
   const [direction, setDirection] = useState<Direction>("UP");
   const [inputCoordinator, setInputCoordinator] = useState<
     [number, number, Direction]
@@ -26,13 +25,15 @@ const PageView: React.FC<pageViewProps> = ({ mapSize }) => {
   };
 
   const updateRobotPosition = (): void => {
-    const [x, y] = position;
+    let [x, y] = position;
     const [lengthX, lengthY] = mapSize;
+    x = Math.min(0, Math.max(lengthX, x));
+    y = Math.min(0, Math.max(lengthX, y));
 
     const moveStrategy = {
-      UP: [x, y - 1 < 0 ? lengthY - 1 : y - 1],
+      UP: [x, y - 1],
       DOWN: [x, (y + 1) % lengthY],
-      LEFT: [x - 1 < 0 ? lengthX - 1 : x - 1, y],
+      LEFT: [x - 1, y],
       RIGHT: [(x + 1) % lengthX, y],
     };
     setPosition(moveStrategy[direction]);
@@ -69,10 +70,13 @@ const PageView: React.FC<pageViewProps> = ({ mapSize }) => {
     setPosition([x, y]);
     setDirection(tempHeading as Direction);
   };
+
   return (
     <main className="page-view">
       {position && (
-        <Placement position={position}>
+        <Placement
+          position={position}
+          direction={direction}>
           <Toy direction={direction} />
         </Placement>
       )}
