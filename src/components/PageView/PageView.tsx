@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import Map from "./components/Map/Map";
-import { Toy } from "../Toy";
+import { Toy } from "./components/Toy";
 import { ControlPanel } from "./components/ControlPanel";
 import { generatePositionStyle } from "../../utils/moveRobot";
 import { Direction, Action } from "../../typeDefine";
+import { Placement } from "./components/GameLogic";
+import { Status } from "./components/Status";
 
 interface pageViewProps {
   mapSize: number[];
@@ -69,12 +71,13 @@ const PageView: React.FC<pageViewProps> = ({ mapSize }) => {
   };
   return (
     <main className="page-view">
-      <Map map_size={mapSize}>
-        <Toy
-          direction={direction}
-          styleString={generatePositionStyle(position)}
-        />
-      </Map>
+      {position && (
+        <Placement position={position}>
+          <Toy direction={direction} />
+        </Placement>
+      )}
+
+      <Map map_size={mapSize} />
       <ControlPanel
         moveRobot={updateRobotPosition}
         turnRobot={turnRobot}
@@ -84,6 +87,10 @@ const PageView: React.FC<pageViewProps> = ({ mapSize }) => {
         setCoordinator={handleInputChange}
         setRobot={setRobot}
         setDirection={() => setDirection}
+      />
+      <Status
+        position={position}
+        direction={direction}
       />
     </main>
   );
