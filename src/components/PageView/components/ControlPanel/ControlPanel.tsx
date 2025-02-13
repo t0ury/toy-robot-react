@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { Button } from "../../../Button";
+import { Button } from "./Button";
 import { Direction, Action } from "../../../../typeDefine";
 interface Props {
   direction: Direction;

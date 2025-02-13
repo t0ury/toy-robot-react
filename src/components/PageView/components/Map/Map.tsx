@@ -1,7 +1,7 @@
 /** @format */
 
 import { v4 as uuid } from "uuid";
-import { Tile } from "./";
+import { Tile } from "./components";
 
 interface Props {
   children: React.ReactNode;
